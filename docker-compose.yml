@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres-container
+    restart: always
+    environment:
+      POSTGRES_DB: django_db              # Default database name
+      POSTGRES_USER: django_user          # Non-root user
+      POSTGRES_PASSWORD: django_password  # Password for non-root user
+    ports:
+      - "5432:5432"                       # Map PostgreSQL port to host
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage for PostgreSQL data
+
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"                       # Map Redis default port to host
+    volumes:
+      - redis_data:/data                  # Persistent storage for Redis data
+
+volumes:
+  postgres_data:
+    driver: local                         # Use local storage driver for PostgreSQL
+  redis_data:
+    driver: local                         # Use local storage driver for Redis

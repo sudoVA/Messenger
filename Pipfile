@@ -4,11 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "5.1"
-djangorestframework = "3.15"
+djangorestframework = "3.15.2"
+django = "<5.0,>=4.0"
+channels = {extras = ["daphne"], version = "*"}
 
 [dev-packages]
+black = "*"
+isort = "*"
 
 [requires]
-python_version = "3.13"
-python_full_version = "3.13.1"
+python_version = "3.10"
+python_full_version = "3.10.11"
